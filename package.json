@@ -20,12 +20,12 @@
     "migration:revert": "env-cmd -f .env ts-node ./node_modules/.bin/typeorm migration:revert"
   },
   "dependencies": {
-    "@nestjs/common": "^8.2.3",
-    "@nestjs/core": "^8.2.3",
-    "@nestjs/platform-express": "^8.2.3",
-    "@nestjs/swagger": "^5.1.5",
-    "@nestjs/testing": "^8.2.3",
-    "@nestjs/typeorm": "^8.0.2",
+    "@nestjs/common": "^9.0.0",
+    "@nestjs/core": "^9.0.0",
+    "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^6.1.4",
+    "@nestjs/testing": "^9.0.0",
+    "@nestjs/typeorm": "^9.0.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "joi": "^17.5.0",
@@ -35,7 +35,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.4.0",
     "swagger-ui-express": "^4.2.0",
-    "typeorm": "^0.2.41",
+    "typeorm": "^0.3.11",
     "winston": "^3.3.3"
   },
   "devDependencies": {
