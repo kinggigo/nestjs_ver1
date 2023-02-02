@@ -158,9 +158,9 @@ export class BoardController {
         const result = new DefaultResult();
 
         if (id == undefined) {
-            result.data = this.boardService.find();
+            result.data = await this.boardService.find();
         } else {
-            result.data = this.boardService.findById(+id);
+            result.data = await this.boardService.findById(+id);
         }
         result.code = "200";
         result.message = "조회가 완료되었습니다.";
