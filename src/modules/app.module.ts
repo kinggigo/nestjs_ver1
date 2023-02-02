@@ -1,7 +1,9 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { BoardModule } from "./board/board.module";
 
 import { CommonModule } from "./common";
+import { UserModule } from "./member/member.module";
 import { PassengerModule } from "./passenger/passenger.module";
 
 @Module({
@@ -19,6 +21,8 @@ import { PassengerModule } from "./passenger/passenger.module";
             timezone: "Asia/Seoul",
         }),
         PassengerModule,
+        UserModule,
+        BoardModule,
     ],
 })
 export class ApplicationModule {}
