@@ -7,11 +7,8 @@ import {
     BoardInfo,
     CommentInfo,
     CommentInfoInput,
-    ConsultationInput,
-    ConsultationUpdate,
     Heart,
 } from "../model";
-import { Consultation } from "../model/consultation.entity";
 // import { findLikeBoards } from "../model/findLikeBoards.input";
 
 @Injectable()
@@ -25,9 +22,6 @@ export class BoardService {
 
         // @InjectRepository(Member)
         // private readonly memberRepo: Repository<Member>,
-
-        @InjectRepository(Consultation)
-        private readonly consultationRepo: Repository<Consultation>,
 
         @InjectRepository(CommentInfo)
         private readonly commentRepo: Repository<CommentInfo>
@@ -103,33 +97,6 @@ export class BoardService {
         return await this.heartRepo.delete(del);
     }
 
-    public async createConsultation(input: ConsultationInput) {
-        const insertData = new Consultation();
-        insertData.user_id = input.user_id;
-        insertData.name = input.name;
-        insertData.birth = input.birth;
-        insertData.phone = input.phone;
-        insertData.nationality = input.nationality;
-        insertData.current_visa = input.current_visa;
-        insertData.application_visa = input.application_visa;
-        insertData.service_agree = input.service_agree;
-        insertData.personality_agree = input.personality_agree;
-        insertData.marketing_agree = input.marketing_agree;
-        insertData.status = input.status;
-        const result = await this.consultationRepo.save(insertData);
-        return result;
-    }
-
-    public async getconsultation() {
-        return await this.consultationRepo.find();
-    }
-
-    public async getconsultationByUserid(user_id: string) {
-        return await this.consultationRepo.find({
-            where: { user_id: user_id },
-        });
-    }
-
     public async createComment(input: CommentInfoInput) {
         const insertData = new CommentInfo();
         insertData.feed_id = input.feed_id;
@@ -151,36 +118,5 @@ export class BoardService {
             .where("m.user_id = :id", { id: user_id })
             .orderBy("m.createdAt", "DESC")
             .getMany();
-    }
-
-    // public async getconsultationByUserId(user_id: string) {
-    //     const user = await this.memberRepo.findOne({
-    //         where: { user_id: user_id },
-    //     });
-    //     if (!user) {
-    //         return null;
-    //     }
-    //     return await this.consultationRepo.find({
-    //         where: { user_id: user.id },
-    //     });
-    // }
-
-    public async getconsultationByid(id: number) {
-        return await this.consultationRepo.find({
-            where: { id: id },
-        });
-    }
-
-    public async updateConsultationByid(data: ConsultationUpdate) {
-        const willUpdata = await this.consultationRepo.findOne({
-            where: { id: data.id },
-        });
-        if (!willUpdata) {
-            return null;
-        }
-        // data.parent_id ?? willUpdata.parent_id = data.parent_id;
-        // return await this.consultationRepo.find({
-        //     where: { id: id },
-        // });
     }
 }

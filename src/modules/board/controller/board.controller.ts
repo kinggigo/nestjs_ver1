@@ -24,12 +24,7 @@ import { diskStorage } from "multer";
 import { extname } from "path";
 import { DefaultResult } from "../../../common/resultCode";
 import { LoggerService } from "../../common";
-import {
-    CommentInfoInput,
-    ConsultationInput,
-    ConsultationUpdate,
-    HeartInput,
-} from "../model";
+import { CommentInfoInput, HeartInput } from "../model";
 import { BoarderInfoInput } from "../model/boardInfo.input";
 import { GetBoardParam } from "../model/board.param";
 // import { findLikeBoards } from "../model/findLikeBoards.input";
@@ -126,84 +121,6 @@ export class BoardController {
             );
         }
         this.logger.info(JSON.stringify(result));
-        return result;
-    }
-
-    @Get("/consultation")
-    // @UseGuards(RestrictedGuard)
-    @ApiResponse({ status: HttpStatus.OK, type: DefaultResult })
-    @ApiOperation({ deprecated: true })
-    public async getConsultation(
-        @Query("user_id") user_id: string | null
-    ): Promise<DefaultResult> {
-        const result = new DefaultResult();
-        try {
-            if (user_id == null) {
-                const search = await this.boardService.getconsultation();
-                result.data = search;
-            } else {
-                const search = await this.boardService.getconsultationByUserid(
-                    user_id
-                );
-                result.data = search;
-            }
-            result.code = "200";
-            result.message = "조회가 완료되었습니다.";
-
-            return result;
-        } catch (e) {
-            result.code = "5000";
-            result.message = e;
-            return result;
-        }
-    }
-
-    @Get("/consultation/all")
-    // @UseGuards(RestrictedGuard)
-    @ApiResponse({ status: HttpStatus.OK, type: DefaultResult })
-    @ApiOperation({ deprecated: true })
-    public async getAllConsultation(): Promise<DefaultResult> {
-        const result = new DefaultResult();
-        try {
-            result.data = await this.boardService.getconsultation();
-            result.code = "200";
-            result.message = "조회가 완료되었습니다.";
-
-            return result;
-        } catch (e) {
-            result.code = "5000";
-            result.message = e;
-            return result;
-        }
-    }
-
-    @Post("/consultation")
-    // @UseGuards(RestrictedGuard)
-    @ApiResponse({ status: HttpStatus.OK, type: DefaultResult })
-    @ApiOperation({ deprecated: true })
-    public async createConsulation(
-        @Body() changeInput: ConsultationInput
-    ): Promise<DefaultResult> {
-        console.log(JSON.stringify(changeInput));
-        const result = new DefaultResult();
-        const createResult = await this.boardService.createConsultation(
-            changeInput
-        );
-        result.code = "201";
-        result.data = createResult;
-        console.log(result);
-        return result;
-    }
-
-    @Post("/consultation/patch")
-    // @UseGuards(RestrictedGuard)
-    @ApiResponse({ status: HttpStatus.OK, type: DefaultResult })
-    public async updateConsulation(
-        @Body() changeInput: ConsultationUpdate
-    ): Promise<DefaultResult> {
-        const result = new DefaultResult();
-        const search = await this.boardService.getconsultation();
-        result.data = search;
         return result;
     }
 
