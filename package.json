@@ -1,8 +1,8 @@
 {
-  "name": "nest-template",
-  "version": "0.1.0",
-  "description": "NestJS API project template crafted for Docker environments",
-  "author": "Saluki",
+  "name": "nest-andus-homepage",
+  "version": "1.0.0",
+  "description": "NestJS API Homepage project crafted for Docker environments",
+  "author": "dongha Lee",
   "license": "MIT",
   "private": true,
   "engines": {

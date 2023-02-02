@@ -1,18 +1,18 @@
-import { INestApplication } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { json } from 'express';
-import * as helmet from 'helmet';
+import { INestApplication } from "@nestjs/common";
+import { NestFactory } from "@nestjs/core";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { json } from "express";
+import * as helmet from "helmet";
 
-import { ApplicationModule } from './modules/app.module';
-import { CommonModule, LogInterceptor } from './modules/common';
+import { ApplicationModule } from "./modules/app.module";
+import { CommonModule, LogInterceptor } from "./modules/common";
 
 /**
  * These are API defaults that can be changed using environment variables,
  * it is not required to change them (see the `.env.example` file)
  */
 const API_DEFAULT_PORT = 3000;
-const API_DEFAULT_PREFIX = '/api/v1/';
+const API_DEFAULT_PREFIX = "/api/v1/";
 
 /**
  * The defaults below are dedicated to Swagger configuration, change them
@@ -20,9 +20,10 @@ const API_DEFAULT_PREFIX = '/api/v1/';
  *
  * @todo Change the constants below following your API requirements
  */
-const SWAGGER_TITLE = 'Passenger API';
-const SWAGGER_DESCRIPTION = 'API used for passenger management';
-const SWAGGER_PREFIX = '/docs';
+const SWAGGER_TITLE = "Andus Homepage REST API";
+const SWAGGER_DESCRIPTION =
+    "아래에 정의된 모든 API들은 Andus homepage에 국한되어 사용됩니다.";
+const SWAGGER_PREFIX = "/docs";
 
 /**
  * Register a Swagger module in the NestJS application.
@@ -34,8 +35,7 @@ const SWAGGER_PREFIX = '/docs';
  *       code below with API keys, security requirements, tags and more.
  */
 function createSwagger(app: INestApplication) {
-
-    const version = require('../package.json').version || '';
+    const version = require("../package.json").version || "";
 
     const options = new DocumentBuilder()
         .setTitle(SWAGGER_TITLE)
@@ -55,12 +55,11 @@ function createSwagger(app: INestApplication) {
  * parsing middleware.
  */
 async function bootstrap(): Promise<void> {
-
     const app = await NestFactory.create(ApplicationModule);
 
     app.setGlobalPrefix(process.env.API_PREFIX || API_DEFAULT_PREFIX);
 
-    if (!process.env.SWAGGER_ENABLE || process.env.SWAGGER_ENABLE === '1') {
+    if (!process.env.SWAGGER_ENABLE || process.env.SWAGGER_ENABLE === "1") {
         createSwagger(app);
     }
 
@@ -81,7 +80,7 @@ async function bootstrap(): Promise<void> {
  * @todo It is often advised to enhance the code below with an exception-catching
  *       service for better error handling in production environments.
  */
-bootstrap().catch(err => {
+bootstrap().catch((err) => {
     // tslint:disable-next-line:no-console
     console.error(err);
     process.exit(1);
