@@ -8,13 +8,11 @@ import { EventInfoInput, EventInfo } from "../model";
 export class EventService {
     public constructor(
         @InjectRepository(EventInfo)
-        private readonly eventRepo: Repository<EventInfo> // @InjectRepository(Member)
-    ) // private readonly memberRepo: Repository<Member>,
-
-    {}
+        private readonly eventRepo: Repository<EventInfo> // @InjectRepository(Member) // private readonly memberRepo: Repository<Member>,
+    ) {}
 
     public async find(): Promise<EventInfo[]> {
-        return this.eventRepo.find({ order: { createdAt: "desc" } });
+        return this.eventRepo.find({ order: { createdAt: "asc" } });
     }
 
     public async findById(id: number): Promise<EventInfo | null> {
