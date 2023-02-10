@@ -65,6 +65,7 @@ async function bootstrap(): Promise<void> {
 
     app.use(json());
     app.use(helmet());
+    app.enableCors();
 
     const logInterceptor = app.select(CommonModule).get(LogInterceptor);
     app.useGlobalInterceptors(logInterceptor);

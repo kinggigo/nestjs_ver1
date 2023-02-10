@@ -3,6 +3,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { BoardModule } from "./board/board.module";
 
 import { CommonModule } from "./common";
+import { EventModule } from "./event/event.module";
 import { UserModule } from "./member/member.module";
 import { PassengerModule } from "./passenger/passenger.module";
 
@@ -23,6 +24,7 @@ import { PassengerModule } from "./passenger/passenger.module";
         PassengerModule,
         UserModule,
         BoardModule,
+        EventModule,
     ],
 })
 export class ApplicationModule {}
