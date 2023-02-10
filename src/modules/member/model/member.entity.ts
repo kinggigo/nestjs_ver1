@@ -21,7 +21,7 @@ export class Member {
     @Column({ name: "pwd", length: Member.LENGTH_100 })
     public pwd: string;
 
-    @Column({ name: "name", length: Member.LENGTH_100 })
+    @Column({ name: "name", length: Member.LENGTH_100, nullable: true })
     public name: string;
 
     @Column({ name: "imageUrl", nullable: true })
